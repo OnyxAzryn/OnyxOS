@@ -11,6 +11,7 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 dnf5 install -y zsh 
+dnf5 uninstall -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
 
 # Use a COPR Example:
 #
@@ -18,6 +19,10 @@ dnf5 install -y zsh
 # dnf5 -y install package
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
+
+dnf5 -y copr enable bieszczaders/kernel-cachyos-lto
+dnf5 install -y kernel-cachyos-lto kernel-cachyos-lto-devel-matched
+dnf5 -y copr disable bieszczaders/kernel-cachyos-lto
 
 #### Example for enabling a System Unit File
 
