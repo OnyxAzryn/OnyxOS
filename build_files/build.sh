@@ -10,26 +10,21 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y zsh 
-dnf5 remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
+dnf install -y zsh gcc
+dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+dnf -y copr enable bieszczaders/kernel-cachyos-lto
+dnf install -y kernel-cachyos-lto
+dnf -y copr disable bieszczaders/kernel-cachyos-lto
 
-dnf5 -y copr enable bieszczaders/kernel-cachyos-lto
-dnf5 install -y kernel-cachyos-lto
-dnf5 -y copr disable bieszczaders/kernel-cachyos-lto
+dnf -y copr enable bieszczaders/kernel-cachyos-addons
+dnf install -y cachyos-ksm-settings scx-manager scx-scheds
+dnf -y copr disable bieszczaders/kernel-cachyos-addons
 
+# Generate initramfs
 QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-cachyos-lto-(\d+)' | sed -E 's/kernel-cachyos-lto-//')"
 dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible --zstd -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
-
 chmod 0600 /lib/modules/$QUALIFIED_KERNEL/initramfs.img
 
-
 #### Example for enabling a System Unit File
-
 systemctl enable podman.socket
