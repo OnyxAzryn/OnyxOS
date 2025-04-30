@@ -11,7 +11,7 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 dnf5 install -y zsh 
-dnf5 uninstall -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
+dnf5 remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
 
 # Use a COPR Example:
 #
