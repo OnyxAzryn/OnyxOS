@@ -21,8 +21,14 @@ dnf5 remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modu
 # dnf5 -y copr disable ublue-os/staging
 
 dnf5 -y copr enable bieszczaders/kernel-cachyos-lto
-dnf5 install -y kernel-cachyos-lto kernel-cachyos-lto-devel-matched
+dnf5 install -y kernel-cachyos-lto
 dnf5 -y copr disable bieszczaders/kernel-cachyos-lto
+
+QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-(\d+)' | grep 'cachyos-lto' | sed -E 's/kernel-//')"
+/usr/libexec/rpm-ostree/wrapped/dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible --zstd -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
+
+chmod 0600 /lib/modules/$QUALIFIED_KERNEL/initramfs.img
+
 
 #### Example for enabling a System Unit File
 
