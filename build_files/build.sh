@@ -24,7 +24,7 @@ dnf5 -y copr enable bieszczaders/kernel-cachyos-lto
 dnf5 install -y kernel-cachyos-lto
 dnf5 -y copr disable bieszczaders/kernel-cachyos-lto
 
-QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-(\d+)' | grep 'cachyos-lto' | sed -E 's/kernel-//')"
+QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-cachyos-lto-(\d+)' | sed -E 's/kernel-cachyos-lto-//)"
 /usr/libexec/rpm-ostree/wrapped/dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible --zstd -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
 
 chmod 0600 /lib/modules/$QUALIFIED_KERNEL/initramfs.img
