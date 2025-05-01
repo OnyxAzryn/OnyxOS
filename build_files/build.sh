@@ -13,10 +13,12 @@ set -ouex pipefail
 dnf install -y zsh gcc
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
 
+# CachyOS Kernel
 dnf -y copr enable bieszczaders/kernel-cachyos-lto
 dnf install -y kernel-cachyos-lto
 dnf -y copr disable bieszczaders/kernel-cachyos-lto
 
+# CachyOS Kernel Addons
 dnf -y copr enable bieszczaders/kernel-cachyos-addons
 dnf install -y cachyos-ksm-settings scx-manager scx-scheds
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
