@@ -2,23 +2,29 @@
 
 set -ouex pipefail
 
-### Install packages
+# Add the VSCode repository
+tee /etc/yum.repos.d/vscode.repo <<'EOF'
+[code]
+name=Visual Studio Code
+baseurl=https://packages.microsoft.com/yumrepos/vscode
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+EOF
 
-# Packages can be installed from any enabled yum repo on the image.
-# RPMfusion repos are available by default in ublue main images
-# List of rpmfusion packages can be found here:
-# https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
+# Install required packages
+dnf install -y zsh gcc code
 
-# this installs a package from fedora repos
-dnf install -y zsh gcc
+# Cleanup VSCode repository
+rm /etc/yum.repos.d/vscode.repo
+
+# Install the CachyOS Kernel
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
-
-# CachyOS Kernel
 dnf -y copr enable bieszczaders/kernel-cachyos-lto
 dnf install -y kernel-cachyos-lto
 dnf -y copr disable bieszczaders/kernel-cachyos-lto
 
-# CachyOS Kernel Addons
+# Install CachyOS Kernel Addons
 dnf -y copr enable bieszczaders/kernel-cachyos-addons
 dnf install -y cachyos-ksm-settings scx-manager scx-scheds
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
@@ -28,5 +34,5 @@ QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-cachyos-lto-(\d+)' | sed -E 's/ker
 dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible --zstd -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
 chmod 0600 /lib/modules/$QUALIFIED_KERNEL/initramfs.img
 
-#### Example for enabling a System Unit File
+# Enable Podman
 systemctl enable podman.socket
