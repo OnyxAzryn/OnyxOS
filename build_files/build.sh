@@ -13,7 +13,7 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
 # Install required packages
-dnf install -y zsh gcc code
+dnf install -y zsh gcc code libvirt libvirt-client libvirt-nss virt-manager
 
 # Cleanup VSCode repository
 rm /etc/yum.repos.d/vscode.repo
