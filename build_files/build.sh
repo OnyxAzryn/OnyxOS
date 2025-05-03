@@ -13,10 +13,13 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
 # Install required packages
-dnf install -y zsh gcc code libvirt libvirt-client libvirt-nss virt-manager
+dnf install -y code gcc libvirt libvirt-client libvirt-nss virt-manager zsh
 
-# Cleanup VSCode repository
-rm /etc/yum.repos.d/vscode.repo
+# Uninstall Firefox, use the Flatpak instead
+dnf remove -y firefox firefox-langpacks
+
+# Disable VSCode repository
+sed -i "1,/enabled=1/{s/enabled=1/enabled=0/}" /etc/yum.repos.d/vscode.repo
 
 # Install the CachyOS Kernel
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
