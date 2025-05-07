@@ -13,7 +13,7 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
 # Install required packages
-dnf install -y code gcc libvirt libvirt-client libvirt-nss virt-manager zsh
+dnf install -y code gcc libvirt libvirt-client libvirt-nss virt-manager virt-viewer wireshark zsh
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
