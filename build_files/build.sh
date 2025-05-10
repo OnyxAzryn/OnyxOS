@@ -39,3 +39,6 @@ chmod 0600 /lib/modules/$QUALIFIED_KERNEL/initramfs.img
 
 # Enable Podman
 systemctl enable podman.socket
+
+# Branding
+/ctx/branding.sh
