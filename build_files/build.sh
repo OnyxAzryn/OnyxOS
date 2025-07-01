@@ -13,7 +13,7 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
 # Install required packages
-dnf install -y code gcc libvirt libvirt-client libvirt-nss unicode-emoji virt-manager virt-viewer wireshark zsh
+dnf install -y code gcc libvirt libvirt-client libvirt-nss noto-emoji virt-manager virt-viewer wireshark zsh
 
 # Install ROCm
 dnf install -y rocm-clinfo rocm-hip rocm-opencl rocminfo
