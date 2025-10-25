@@ -5,11 +5,10 @@ set -ouex pipefail
 # Install the CachyOS Kernel
 #dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
 setsebool -P domain_kernel_load_modules on
-dnf remove -y dracut
+dnf --noautoremove erase -y dracut
 dnf -y copr enable bieszczaders/kernel-cachyos-lto
 dnf install -y kernel-cachyos-lto
 dnf -y copr disable bieszczaders/kernel-cachyos-lto
-dnf install -y dracut
 
 # Add the VSCode repository
 tee /etc/yum.repos.d/vscode.repo <<'EOF'
