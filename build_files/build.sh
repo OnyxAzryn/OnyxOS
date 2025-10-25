@@ -36,6 +36,7 @@ dnf -y copr disable bieszczaders/kernel-cachyos-addons
 
 # Clean packages
 dnf clean all
+du -shx /*
 
 # Generate initramfs
 QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-cachyos-lto-(\d+)' | sed -E 's/kernel-cachyos-lto-//')"
