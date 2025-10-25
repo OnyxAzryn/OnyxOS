@@ -3,10 +3,9 @@
 set -ouex pipefail
 
 # Install the CachyOS Kernel
-#dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
-setsebool -P domain_kernel_load_modules on
-dnf remove -y dracut
+dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra dracut
 dnf -y copr enable bieszczaders/kernel-cachyos-lto
+setsebool -P domain_kernel_load_modules on
 dnf install -y kernel-cachyos-lto
 dnf -y copr disable bieszczaders/kernel-cachyos-lto
 dnf install -y bootc ostree plymouth plymouth-plugin-label plymouth-plugin-two-step plymouth-scripts plymouth-system-theme plymouth-theme-spinner rpm-ostree
@@ -26,9 +25,6 @@ dnf install -y install @cosmic-desktop
 
 # Install required packages
 dnf install -y code gcc libvirt libvirt-client libvirt-nss virt-manager virt-viewer wireshark zsh
-
-# Install ROCm
-dnf install -y rocm-clinfo rocm-hip rocm-opencl rocminfo
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
