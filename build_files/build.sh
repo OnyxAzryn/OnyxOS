@@ -34,6 +34,9 @@ dnf -y copr enable bieszczaders/kernel-cachyos-addons
 dnf install -y scx-manager scx-scheds
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
 
+# Clean packages
+dnf clean all
+
 # Generate initramfs
 QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-cachyos-lto-(\d+)' | sed -E 's/kernel-cachyos-lto-//')"
 dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible --zstd -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
