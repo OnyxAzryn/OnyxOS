@@ -21,7 +21,7 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
 # Install required packages
-dnf install -y @cosmic-desktop code gcc libvirt libvirt-client libvirt-nss rocm-clinfo rocm-hip rocm-opencl rocminfo virt-manager virt-viewer wireshark zsh
+dnf install -y @cosmic-desktop code gcc libvirt libvirt-client libvirt-nss virt-manager virt-viewer wireshark zsh
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
@@ -36,7 +36,6 @@ dnf -y copr disable bieszczaders/kernel-cachyos-addons
 
 # Clean packages
 dnf clean all
-du -shx /*
 
 # Generate initramfs
 QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-cachyos-lto-(\d+)' | sed -E 's/kernel-cachyos-lto-//')"
