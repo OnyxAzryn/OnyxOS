@@ -3,9 +3,9 @@
 set -ouex pipefail
 
 # Install the CachyOS Kernel
-dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
+#dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
 dnf -y copr enable bieszczaders/kernel-cachyos-lto
-dnf install -y kernel-cachyos-lto kernel-cachyos-lto-devel-matched
+dnf install -y kernel-cachyos-lto
 dnf -y copr disable bieszczaders/kernel-cachyos-lto
 
 # Add the VSCode repository
