@@ -28,7 +28,7 @@ dnf remove -y firefox firefox-langpacks
 sed -i "1,/enabled=1/{s/enabled=1/enabled=0/}" /etc/yum.repos.d/vscode.repo
 
 # Install the CachyOS Kernel
-dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
+#dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
 dnf -y copr enable bieszczaders/kernel-cachyos-lto
 dnf install -y kernel-cachyos-lto
 dnf -y copr disable bieszczaders/kernel-cachyos-lto
