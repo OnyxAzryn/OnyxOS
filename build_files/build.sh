@@ -12,6 +12,9 @@ gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
+# Install cosmic
+dnf install -y install @cosmic-desktop
+
 # Install required packages
 dnf install -y code gcc libvirt libvirt-client libvirt-nss virt-manager virt-viewer wireshark zsh
 
@@ -20,9 +23,6 @@ dnf install -y rocm-clinfo rocm-hip rocm-opencl rocminfo
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
-
-# Install cosmic
-dnf install -y install @cosmic-desktop
 
 # Disable VSCode repository
 sed -i "1,/enabled=1/{s/enabled=1/enabled=0/}" /etc/yum.repos.d/vscode.repo
