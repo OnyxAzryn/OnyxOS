@@ -21,6 +21,9 @@ dnf install -y rocm-clinfo rocm-hip rocm-opencl rocminfo
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
 
+# Install cosmic
+dnf install -y install @cosmic-desktop
+
 # Disable VSCode repository
 sed -i "1,/enabled=1/{s/enabled=1/enabled=0/}" /etc/yum.repos.d/vscode.repo
 
