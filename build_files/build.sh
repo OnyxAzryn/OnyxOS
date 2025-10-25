@@ -35,7 +35,7 @@ dnf -y copr disable bieszczaders/kernel-cachyos-lto
 
 # Install CachyOS Kernel Addons
 dnf -y copr enable bieszczaders/kernel-cachyos-addons
-dnf install -y cachyos-ksm-settings scx-manager scx-scheds
+dnf install -y scx-manager scx-scheds
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
 
 # Generate initramfs
