@@ -2,6 +2,14 @@
 
 set -ouex pipefail
 
+# Install the CachyOS Kernel
+dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra dracut
+dnf -y copr enable bieszczaders/kernel-cachyos-lto
+setsebool -P domain_kernel_load_modules on
+dnf install -y kernel-cachyos-lto
+dnf -y copr disable bieszczaders/kernel-cachyos-lto
+dnf install -y bootc ostree plymouth plymouth-plugin-label plymouth-plugin-two-step plymouth-scripts plymouth-system-theme plymouth-theme-spinner rpm-ostree
+
 # Add the VSCode repository
 tee /etc/yum.repos.d/vscode.repo <<'EOF'
 [code]
@@ -12,26 +20,14 @@ gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
-# Install cosmic
-dnf install -y install @cosmic-desktop
-
 # Install required packages
-dnf install -y code gcc libvirt libvirt-client libvirt-nss virt-manager virt-viewer wireshark zsh
-
-# Install ROCm
-dnf install -y rocm-clinfo rocm-hip rocm-opencl rocminfo
+dnf install -y @cosmic-desktop code gcc libvirt libvirt-client libvirt-nss rocm-clinfo rocm-hip rocm-opencl rocminfo virt-manager virt-viewer wireshark zsh
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
 
 # Disable VSCode repository
 sed -i "1,/enabled=1/{s/enabled=1/enabled=0/}" /etc/yum.repos.d/vscode.repo
-
-# Install the CachyOS Kernel
-dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-uki-virt
-dnf -y copr enable bieszczaders/kernel-cachyos-lto
-dnf install -y kernel-cachyos-lto
-dnf -y copr disable bieszczaders/kernel-cachyos-lto
 
 # Install CachyOS Kernel Addons
 dnf -y copr enable bieszczaders/kernel-cachyos-addons
