@@ -4,10 +4,10 @@ set -ouex pipefail
 
 # Install the CachyOS Kernel
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra dracut
-dnf -y copr enable mozixun/CachyOS-Kernel-LTO-x64-v4
+dnf -y copr enable whitehara/kernel-cachyos-zen3-preempt
 setsebool -P domain_kernel_load_modules on
 dnf install -y kernel
-dnf -y copr disable mozixun/CachyOS-Kernel-LTO-x64-v4
+dnf -y copr disable whitehara/kernel-cachyos-zen3-preempt
 dnf install -y bootc ostree plymouth plymouth-plugin-label plymouth-plugin-two-step plymouth-scripts plymouth-system-theme plymouth-theme-spinner rpm-ostree
 
 # Add the VSCode repository
