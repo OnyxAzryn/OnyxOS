@@ -21,10 +21,7 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
 # Install required packages
-dnf install -y @cosmic-desktop code gcc wireshark zsh
-
-# GParted
-dnf install -y --setopt=install_weak_deps=False gparted
+dnf install -y @cosmic-desktop code gcc wireshark zsh quickshell gparted
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
