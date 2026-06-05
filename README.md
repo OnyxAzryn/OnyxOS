@@ -1,8 +1,8 @@
 # OnyxOS
-This is a customized atomic image based off of cosmic-atomic-main from the Universal Blue project. It includes the CachyOS LTO Kernel along with some additional packages and tweaks.
+This is a customized atomic image based off of cosmic-atomic-main from the Universal Blue project. It includes the CachyOS Kernel (compiled with Zen4 optimizations) along with some additional packages and tweaks.
 
 ## Important Notices
-- This image does not currently support Secure Boot, as the CachyOS LTO Kernel is unsigned
+- This image does not currently support Secure Boot, as the CachyOS Kernel is unsigned
 - There may be frequent changes to the composition of this image as new requirements are discovered
 
 ## Usage
@@ -18,5 +18,5 @@ sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/onyxazryn/onyxos:lat
 
 ## Resources
 - [Universal Blue Images](https://github.com/ublue-os/main)
-- [CachyOS Kernel LTO Copr](https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos-lto)
+- [CachyOS Kernel Zen4](https://copr.fedorainfracloud.org/coprs/itotm/cachyos-kernel-znver4/)
 - [CachyOS Kernel Addons Copr](https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos-addons/)
