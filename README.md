@@ -1,5 +1,5 @@
 # OnyxOS
-This is a customized atomic image based off of cosmic-atomic-main from the Universal Blue project. It includes the CachyOS Kernel (compiled with Zen4 optimizations) along with some additional packages and tweaks.
+This is a customized atomic image based off of the base-main from the Universal Blue project. It includes the CachyOS Kernel (compiled with Zen4 optimizations), the COSMIC Desktop Environment, and some additional packages and tweaks.
 
 ## Important Notices
 - This image does not currently support Secure Boot, as the CachyOS Kernel is unsigned

@@ -32,7 +32,7 @@ sed -i "1,/enabled=1/{s/enabled=1/enabled=0/}" /etc/yum.repos.d/vscode.repo
 # Install CachyOS Kernel Addons
 dnf -y copr enable bieszczaders/kernel-cachyos-addons
 dnf install -y scx-manager scx-scheds
-dnf swap zram-generator-defaults cachyos-settings
+dnf swap -y zram-generator-defaults cachyos-settings
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
 
 # Clean packages
