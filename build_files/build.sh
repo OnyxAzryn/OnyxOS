@@ -4,10 +4,10 @@ set -ouex pipefail
 
 # Install the CachyOS Kernel
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra dracut
-dnf -y copr enable gharib/kernel-cachyos-v4
+dnf -y copr enable itotm/cachyos-kernel-znver4
 setsebool -P domain_kernel_load_modules on
-dnf install -y kernel-cachyos-v4-lto kernel-cachyos-v4-devel-matched
-dnf -y copr disable gharib/kernel-cachyos-v4
+dnf install -y kernel-cachyos-znver4
+dnf -y copr disable itotm/cachyos-kernel-znver4
 dnf install -y bootc ostree plymouth plymouth-plugin-label plymouth-plugin-two-step plymouth-scripts plymouth-system-theme plymouth-theme-spinner rpm-ostree
 
 # Add the VSCode repository
@@ -39,7 +39,7 @@ dnf -y copr disable bieszczaders/kernel-cachyos-addons
 dnf clean all
 
 # Generate initramfs
-QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-cachyos-lto-(\d+)' | sed -E 's/kernel-cachyos-lto-//')"
+QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-cachyos-znver4-(\d+)' | sed -E 's/kernel-cachyos-znver4-//')"
 dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible --zstd -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
 chmod 0600 /lib/modules/$QUALIFIED_KERNEL/initramfs.img
 
