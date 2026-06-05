@@ -4,10 +4,10 @@ set -ouex pipefail
 
 # Install the CachyOS Kernel
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra dracut
-dnf -y copr enable bieszczaders/kernel-cachyos-lto
+dnf -y copr enable gharib/kernel-cachyos-v4
 setsebool -P domain_kernel_load_modules on
-dnf install -y kernel-cachyos-lto
-dnf -y copr disable bieszczaders/kernel-cachyos-lto
+dnf install -y kernel-cachyos-v4-lto kernel-cachyos-v4-devel-matched
+dnf -y copr disable gharib/kernel-cachyos-v4
 dnf install -y bootc ostree plymouth plymouth-plugin-label plymouth-plugin-two-step plymouth-scripts plymouth-system-theme plymouth-theme-spinner rpm-ostree
 
 # Add the VSCode repository
@@ -32,6 +32,7 @@ sed -i "1,/enabled=1/{s/enabled=1/enabled=0/}" /etc/yum.repos.d/vscode.repo
 # Install CachyOS Kernel Addons
 dnf -y copr enable bieszczaders/kernel-cachyos-addons
 dnf install -y scx-manager scx-scheds
+dnf swap zram-generator-defaults cachyos-settings
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
 
 # Clean packages
