@@ -3,7 +3,9 @@ This is a customized atomic image based off of the base-main from the Universal 
 
 ## Important Notices
 - This image does not currently support Secure Boot, as the CachyOS Kernel is unsigned
+- Due to issues with the Rechunker, most of the software in this image is delivered as large layers
 - There may be frequent changes to the composition of this image as new requirements are discovered
+- This image is designed to support a specific usecase and may not be appropriate for all
 
 ## Usage
 1. Download and install the latest [Fedora COSMIC Atomic](https://fedoraproject.org/atomic-desktops/cosmic/) image
