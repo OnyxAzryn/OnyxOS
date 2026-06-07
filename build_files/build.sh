@@ -6,7 +6,7 @@ set -ouex pipefail
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra dracut
 dnf -y copr enable itotm/cachyos-kernel-znver4
 setsebool -P domain_kernel_load_modules on
-dnf install -y kernel-cachyos-znver4
+dnf install -y kernel-cachyos-znver4 kernel-cachyos-znver4-devel-matched
 dnf -y copr disable itotm/cachyos-kernel-znver4
 dnf install -y bootc ostree plymouth plymouth-plugin-label plymouth-plugin-two-step plymouth-scripts plymouth-system-theme plymouth-theme-spinner rpm-ostree
 
