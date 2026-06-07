@@ -17,6 +17,10 @@ sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/onyxazryn/onyxos:lat
 ```
 
 ## Resources
+### Included Today
 - [Universal Blue Images](https://github.com/ublue-os/main)
 - [CachyOS Kernel Zen4](https://copr.fedorainfracloud.org/coprs/itotm/cachyos-kernel-znver4/)
 - [CachyOS Kernel Addons Copr](https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos-addons/)
+### Future Investigations
+- [RakuOS](https://github.com/RakuOS/rakuos-base)
+- [Margine](https://github.com/daniel-g-carrasco/margine-image)
