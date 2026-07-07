@@ -2,6 +2,9 @@
 
 set -ouex pipefail
 
+# Copy the contents of system_files/ of the git repo to /
+cp -avf "/ctx/system_files"/. /
+
 # Install the CachyOS Kernel
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra dracut
 dnf -y copr enable itotm/cachyos-kernel-znver4
