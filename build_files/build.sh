@@ -29,7 +29,7 @@ dnf install -y cosmic-desktop
 dnf -y copr disable ryanabx/cosmic-epoch
 
 # Install required packages
-dnf install -y code gcc wireshark zsh quickshell gparted
+dnf install -y code gcc gnome-keyring wireshark zsh quickshell gparted
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
