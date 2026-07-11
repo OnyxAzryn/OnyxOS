@@ -25,11 +25,11 @@ EOF
 
 # Install COSMIC Nightly
 dnf -y copr enable ryanabx/cosmic-epoch
-dnf install -y cosmic-desktop
+dnf install -y cosmic-desktop dbus-daemon dbus-tools dbus-x11 gcr3 gcr3-base gnome-keyring gnome-keyring-pam pop-sound-theme system-config-printer
 dnf -y copr disable ryanabx/cosmic-epoch
 
 # Install required packages
-dnf install -y code gcc gnome-keyring wireshark zsh quickshell gparted
+dnf install -y code gcc wireshark zsh quickshell gparted
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
