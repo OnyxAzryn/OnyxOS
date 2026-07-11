@@ -23,8 +23,13 @@ gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
 
+# Install COSMIC Nightly
+dnf -y copr enable ryanabx/cosmic-epoch
+dnf install -y cosmic-desktop
+dnf -y copr disable ryanabx/cosmic-epoch
+
 # Install required packages
-dnf install -y @cosmic-desktop code gcc wireshark zsh quickshell gparted
+dnf install -y code gcc wireshark zsh quickshell gparted
 
 # Uninstall Firefox, use the Flatpak instead
 dnf remove -y firefox firefox-langpacks
