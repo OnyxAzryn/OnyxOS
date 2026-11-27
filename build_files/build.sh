@@ -8,7 +8,6 @@ cp -avf "/ctx/system_files"/. /
 # Install the CachyOS Kernel
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
 dnf -y copr enable uhdbits/kernel-cachyos-znver4-lto
-rpm-ostree initramfs --enable
 setsebool -P domain_kernel_load_modules on
 dnf install -y kernel-cachyos-znver4-lto kernel-cachyos-znver4-lto-devel-matched
 dnf -y copr disable uhdbits/kernel-cachyos-znver4-lto
