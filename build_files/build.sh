@@ -9,7 +9,7 @@ cp -avf "/ctx/system_files"/. /
 dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra
 dnf -y copr enable uhdbits/kernel-cachyos-znver4-lto
 setsebool -P domain_kernel_load_modules on
-dnf install -y kernel-cachyos-znver4-lto kernel-cachyos-znver4-lto-devel-matched
+dnf install -y kernel-cachyos-znver4-lto
 dnf -y copr disable uhdbits/kernel-cachyos-znver4-lto
 dnf install -y bootc ostree plymouth plymouth-plugin-label plymouth-plugin-two-step plymouth-scripts plymouth-system-theme plymouth-theme-spinner rpm-ostree
 
